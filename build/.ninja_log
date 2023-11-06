@@ -1,5 +1,0 @@
-# ninja log v5
-1	311	1699238019053050926	CMakeFiles/SocketTalk.dir/main.cpp.o	6c794fd7f6d1610
-311	381	1699238019121050696	SocketTalk	29415b2e51da0340
-1	152	1699236803775126160	CMakeFiles/SocketTalk.dir/client.cpp.o	3ac0a8961bfeba69
-1	160	1699238018901051437	CMakeFiles/SocketTalk.dir/server.cpp.o	c0c2b7d2fecdef12
