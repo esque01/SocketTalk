@@ -287,6 +287,9 @@ CTEST_SUBMIT_RETRY_DELAY:STRING=5
 //Maximum time allowed before CTest will kill the test.
 DART_TESTING_TIMEOUT:STRING=1500
 
+//Path to a program.
+GITCOMMAND:FILEPATH=/usr/bin/git
+
 //Command to build the project
 MAKECOMMAND:STRING=/usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 
@@ -540,6 +543,8 @@ CTEST_SUBMIT_RETRY_DELAY-ADVANCED:INTERNAL=1
 DART_TESTING_TIMEOUT-ADVANCED:INTERNAL=1
 //Details about finding PkgConfig
 FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.29.2()]
+//ADVANCED property for variable: GITCOMMAND
+GITCOMMAND-ADVANCED:INTERNAL=1
 GTK_CFLAGS:INTERNAL=-pthread;-I/usr/include/gtk-3.0;-I/usr/include/at-spi2-atk/2.0;-I/usr/include/at-spi-2.0;-I/usr/include/dbus-1.0;-I/usr/lib/x86_64-linux-gnu/dbus-1.0/include;-I/usr/include/gtk-3.0;-I/usr/include/gio-unix-2.0;-I/usr/include/cairo;-I/usr/include/pango-1.0;-I/usr/include/harfbuzz;-I/usr/include/pango-1.0;-I/usr/include/fribidi;-I/usr/include/harfbuzz;-I/usr/include/atk-1.0;-I/usr/include/cairo;-I/usr/include/pixman-1;-I/usr/include/uuid;-I/usr/include/freetype2;-I/usr/include/gdk-pixbuf-2.0;-I/usr/include/libpng16;-I/usr/include/x86_64-linux-gnu;-I/usr/include/libmount;-I/usr/include/blkid;-I/usr/include/glib-2.0;-I/usr/lib/x86_64-linux-gnu/glib-2.0/include
 GTK_CFLAGS_I:INTERNAL=
 GTK_CFLAGS_OTHER:INTERNAL=-pthread
