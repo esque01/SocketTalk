@@ -38,11 +38,10 @@ Server::~Server()
     close(serverSocket);
 }
 
-void Server::handleClient(int clientSocket)
+void Server::handleClient(int clientSocket, const sockaddr_in& clientAddr)
 {
     char buffer[1024];
     ssize_t bytesRead;
-    
     while ((bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0)) > 0)
     {
         buffer[bytesRead] = '\0';
@@ -50,13 +49,13 @@ void Server::handleClient(int clientSocket)
 
         std::string response = "Server recieved: ";
         response += buffer;
-
+    
         send(clientSocket, response.c_str(), response.length(), 0);
     }
 
     if (bytesRead == 0)
     {
-        std::cout << "Client closed connection." << std::endl;
+        std::cout << "Client closed connection: " << inet_ntoa(clientAddr.sin_addr) << ":" << ntohs(clientAddr.sin_port) << std::endl;
     }
     else
     {
@@ -79,7 +78,8 @@ void Server::start()
         {
             std::cerr << "Error accepting client connection" << std::endl;
         }
-        handleClient(clientSocket);
+        std::cout << "Client connected from: " << inet_ntoa(clientAddr.sin_addr) << ":" << ntohs(clientAddr.sin_port) << std::endl;
+        std::thread(&Server::handleClient, this, clientSocket, clientAddr).detach();
     }
 }
 

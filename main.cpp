@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include <string>
 #include <cstring>
 #include <unistd.h>
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
 
     Server server(8080);
     Client client("127.0.0.1", 8080);
-    
+
     server.start();
     
     return 0;

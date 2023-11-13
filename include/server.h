@@ -8,6 +8,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <thread>
 
 class Server
 {
@@ -19,7 +20,7 @@ public:
     ~Server();
     void start();
     void stop();
-    void handleClient(int);
+    void handleClient(int, const sockaddr_in&);
 };
 
 #endif
