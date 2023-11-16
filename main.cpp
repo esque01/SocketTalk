@@ -1,4 +1,4 @@
- #include <iostream>
+#include <iostream>
 #include <string>
 #include <cstring>
 #include <unistd.h>
@@ -7,6 +7,11 @@
 #include <netinet/in.h>
 #include "server.h"
 #include "client.h"
+#include "dbmanager.h"
+#include <openssl/crypto.h>
+
+
+const std::string DB_PATH = "/home/edward/Development/SocketTalk/db/sockettalk.db";
 
 typedef struct
 {
@@ -94,16 +99,20 @@ static void activate(GtkApplication *app, gpointer user_data)
 int main(int argc, char **argv)
 {
 
-    GtkApplication *app;
-    int status;
+    // GtkApplication *app;
+    // int status;
 
-    AppData data;
-    app = gtk_application_new("org.gtk.example", G_APPLICATION_FLAGS_NONE);
-    g_signal_connect(app, "activate", G_CALLBACK(activate), &data);
+    // AppData data;
+    // app = gtk_application_new("org.gtk.example", G_APPLICATION_FLAGS_NONE);
+    // g_signal_connect(app, "activate", G_CALLBACK(activate), &data);
 
-    status = g_application_run(G_APPLICATION(app), argc, argv);
+    // status = g_application_run(G_APPLICATION(app), argc, argv);
 
-    g_object_unref(app);
+    // g_object_unref(app);
+
+    DatabaseManager &dbManager = DatabaseManager::getInstance();
+    dbManager.connect("sockettalk.db");
+    dbManager.createTables();
 
     Server server(8080);
     Client client("127.0.0.1", 8080);

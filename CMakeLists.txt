@@ -7,13 +7,18 @@ enable_testing()
 FIND_PACKAGE(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(GTK REQUIRED gtk+-3.0)
 
-add_executable(SocketTalk main.cpp client.cpp server.cpp)
+find_package(SQLite3 REQUIRED)
+find_package(OpenSSL REQUIRED)
+
+add_executable(SocketTalk main.cpp client.cpp server.cpp dbmanager.cpp)
 
 target_compile_definitions(SocketTalk PRIVATE ${GTKMM_CFLAGS_OTHER})
 target_include_directories(SocketTalk PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
 target_include_directories(SocketTalk PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(SocketTalk PRIVATE ${SQLite3_INCLUDE_DIRS})
+target_include_directories(SocketTalk PRIVATE ${OPENSSL_INCLUDE_DIR})
 
-target_link_libraries(SocketTalk PRIVATE ${GTK_LIBRARIES} ${GTKMM_LIBRARIES})
+target_link_libraries(SocketTalk PRIVATE ${GTK_LIBRARIES} ${GTKMM_LIBRARIES} ${SQLite3_LIBRARIES} ${OPENSSL_LIBRARIES} -lsqlite3)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
