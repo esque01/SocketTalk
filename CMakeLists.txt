@@ -10,10 +10,12 @@ PKG_CHECK_MODULES(GTK REQUIRED gtk+-3.0)
 find_package(SQLite3 REQUIRED)
 find_package(OpenSSL REQUIRED)
 
+
 add_executable(SocketTalk main.cpp client.cpp server.cpp dbmanager.cpp)
 
 target_compile_definitions(SocketTalk PRIVATE ${GTKMM_CFLAGS_OTHER})
 target_include_directories(SocketTalk PRIVATE ${GTK_INCLUDE_DIRS} ${GTKMM_INCLUDE_DIRS})
+target_include_directories(SocketTalk PRIVATE ${CMAKE_SOURCE_DIR}/include/bcrypt)
 target_include_directories(SocketTalk PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_include_directories(SocketTalk PRIVATE ${SQLite3_INCLUDE_DIRS})
 target_include_directories(SocketTalk PRIVATE ${OPENSSL_INCLUDE_DIR})

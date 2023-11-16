@@ -45,10 +45,20 @@ void DatabaseManager::query(const std::string& sql) {
 }
 
 void DatabaseManager::createTables() {
-    const std::string createUsersTableSQL = "CREATE TABLE users (user_id INTEGER PRIMARY KEY, first_name TEXT NOT NULL, last_name TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL)";
+    const std::string createUsersTableSQL = "CREATE TABLE users (user_id INTEGER PRIMARY KEY AUTOINCREMENT, first_name TEXT NOT NULL, last_name TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL)";
 
     query(createUsersTableSQL);
 }
 
+bool DatabaseManager::insertUserData(const UserData& data) {
+    std::stringstream query;
+
+    query << "INSERT INTO users (first_name, last_name, email, password) ";
+    query << "VALUES ('" << data.firstName << "','" << data.lastName << "','" << data.email << "','" << data.password << "');";
+
+    int result = sqlite3_exec(db, query.str().c_str(), nullptr, nullptr, nullptr);
+
+    return result == SQLITE_OK;
+}
 
 

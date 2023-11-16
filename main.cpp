@@ -8,7 +8,6 @@
 #include "server.h"
 #include "client.h"
 #include "dbmanager.h"
-#include <openssl/crypto.h>
 
 
 const std::string DB_PATH = "/home/edward/Development/SocketTalk/db/sockettalk.db";
@@ -112,7 +111,10 @@ int main(int argc, char **argv)
 
     DatabaseManager &dbManager = DatabaseManager::getInstance();
     dbManager.connect("sockettalk.db");
-    dbManager.createTables();
+
+
+    UserData newUser("Edward", "Esqueda", "esquede@outlook.com", "password");
+    dbManager.insertUserData(newUser);
 
     Server server(8080);
     Client client("127.0.0.1", 8080);
