@@ -11,7 +11,8 @@ struct UserData {
     std::string lastName;
     std::string email;
     std::string password;
-
+    
+    UserData(){}
     UserData(const std::string& first, const std::string& last, const std::string& e, const std::string& p): 
     firstName(first), lastName(last), email(e), password(p) {}
 };

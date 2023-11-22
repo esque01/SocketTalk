@@ -112,8 +112,16 @@ int main(int argc, char **argv)
     DatabaseManager &dbManager = DatabaseManager::getInstance();
     dbManager.connect("sockettalk.db");
 
+    UserData newUser;
+    std::cout << "Enter first name: " << std::endl;
+    std::cin >> newUser.firstName;
+    std::cout << "Enter last name: " << std::endl;
+    std::cin >> newUser.lastName;
+    std::cout << "Enter email: " << std::endl;
+    std::cin >> newUser.email;
+    std::cout << "Enter password: " << std::endl;
+    std::cin >> newUser.password;
 
-    UserData newUser("Edward", "Esqueda", "esquede@outlook.com", "password");
     dbManager.insertUserData(newUser);
 
     Server server(8080);
